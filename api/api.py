@@ -4,7 +4,7 @@ from db import db_func
 from typing import List
 from fastapi import APIRouter, HTTPException
 
-api_router = APIRouter(prefix='/api')
+api_router = APIRouter(prefix='/api', tags=['api'])
 
 
 @api_router.get("/users", response_model=List[schemas.User])

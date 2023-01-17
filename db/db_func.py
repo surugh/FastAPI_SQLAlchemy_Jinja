@@ -31,10 +31,13 @@ async def create_user_article(article: schemas.ArticleCreate, user_id: int):
 
 # получаем список всех пользователей
 async def get_users(skip: int = 0, limit: int = 100):
-    results = await database.fetch_all(
+    list_users = await database.fetch_all(
         users.select().offset(skip).limit(limit)
     )
-    return [dict(result) for result in results]
+    result = []
+    for user in list_users:
+        result.append(await get_user(user['id']))
+    return result
 
 
 # ищем пользователя и его контент по id

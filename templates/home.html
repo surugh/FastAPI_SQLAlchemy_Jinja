@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<p>
+    {% for i in articles|sort(attribute="id", reverse=True) %}
+        Title: <a href="article/{{ i.id }}">{{ i.title }}</a>
+        {% for u in users %}
+            {% if u.id == i.owner_id %}
+                Owner: {{ u.username }}
+            {% endif %}
+        {% endfor %}<br>
+    {% endfor %}
+</p>
+{% endblock content %}

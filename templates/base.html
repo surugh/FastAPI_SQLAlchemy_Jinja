@@ -1,24 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>{% block title %}{{ title }}{% endblock title %}</title>
-    <link href="{{ url_for('static', path='/styles.css') }}"
-          rel="stylesheet" type="text/css">
+  {% include 'include/head.html' ignore missing %}
 </head>
 <body>
-    <header>
-        <h2>
-        <nav>
-        {% for menu_item in ["home", "articles"] %}
-            <a href="{{ url_for(menu_item) }}">{{ menu_item }}</a>
-        {% endfor %}
-        </nav>
-        </h2>
-    </header>
-    {% block content %}
-        <h1>{{ title }}</h1>
-        <h3><a href="https://t.me/paranoya_games">{{ content }}</a></h3>
-    {% endblock content %}
+  <header>
+    {% include 'include/header.html' ignore missing %}
+  </header>
+  debug content<br>
+{% block content %}
+{% endblock content %}
+  <footer>
+    {% include 'include/footer.html' ignore missing %}
+  </footer>
 </body>
 </html>

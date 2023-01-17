@@ -5,25 +5,17 @@ from api.api import api_router
 from handlers import root_router
 from fastapi.staticfiles import StaticFiles
 from db.database import database, metadata, engine
+from config import API_METADATA
 
-description = """
-PG Tech DEV
-"""
 
 app = FastAPI(
-    title="FastAPI & SQLAlchemy & Jinja",
-    description=description,
-    version="0.0.1",
-    terms_of_service="https://opensource.org/licenses/MIT",
-    contact={
-        "name": "Paranoya Games",
-        "url": "https://t.me/paranoya_games",
-        "telegram": "https://t.me/get_gl",
-    },
-    license_info={
-        "name": "MIT",
-        "url": "https://opensource.org/licenses/MIT",
-    },
+    title=API_METADATA.get("title"),
+    version=API_METADATA.get("version"),
+    description=API_METADATA.get("description"),
+    terms_of_service=API_METADATA.get("terms_of_service"),
+    contact=API_METADATA.get("contact"),
+    license_info=API_METADATA.get("license_info"),
+    openapi_url="/api/openapi.json"
 )
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
